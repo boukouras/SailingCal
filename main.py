@@ -1,12 +1,12 @@
-#SailingCal
+# SailingCal
 
 from bs4 import BeautifulSoup
 import requests
 import csv
 
 
-#Κλάση SailCal
-class SailCal():
+#Κλάση SailingCal
+class SailingCal():
     #Συνάρτηση αρχικοποίησης
     def __init__(self, x,):
         self.x = x
@@ -130,9 +130,9 @@ class SailCal():
 
     #Συνάρτηση main του προγράμματος
     def main():
-        x = SailCal.inpt()
-        SailCal.scrap(SailCal(x))
+        x = SailingCal.inpt()
+        SailingCal.scrap(SailingCal(x))
 
 
 if __name__ == '__main__':
-    SailCal.main()
+    SailingCal.main()
