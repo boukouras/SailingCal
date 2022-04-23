@@ -1,4 +1,6 @@
-from datetime import datetime,date,time
+from datetime import datetime,date,time,timezone,timedelta
+import pytz
+from dateutil.tz import gettz
 
 ## Υπερφόρτωση μεθόδων για προβολή αντίστοιχων αντικειμένων
 class date(date):
@@ -19,11 +21,17 @@ def date_analyze(txt):
     whole_date = txt[:8]
     day = int(whole_date[6:])
     month = int(whole_date[4:6])
-    year = int(whole_date[:4])
-    return date(year, month, day).isoformat(), time(int(txt[8:10]),int(txt[10:12]),int(txt[12:14]))#datetime.strptime(hour, '%H:%M:%S').time()   #.fromisoformat(hour)
+    year = whole_date[:4]
+    if year[-1] == '1':
+        year=year[:3] + '2'
+    year = int(year)
 
-def date_to_isoformat(date,time):
-    string = ""
-    string += date[:4] + date[5:7] + date[8:10] + 'T' + str(time.strftime("%H")) + str(time.strftime("%M")) + str(time.strftime("%S"))
-    return string
+    return date(year, month, day), time(int(txt[8:10]),int(txt[10:12]),int(txt[12:14]))
 
+
+def to_datetime(date,time):
+      return datetime.combine(date,time,tzinfo=pytz.timezone("Europe/Athens"))
+
+
+def format_timestamp(datetime_obj):
+    return datetime_obj.strftime('%Y%m%dT%H%M%S')
