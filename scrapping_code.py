@@ -1,7 +1,8 @@
 import xml.etree.ElementTree as ET
-from my_calendar import *
-from CalendarEvent import *
+# from my_calendar import *
+# from CalendarEvent import *
 from Regatta import *
+from dates import *
 
 
 class Web_scrapper:
